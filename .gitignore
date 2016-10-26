@@ -6,6 +6,8 @@
 /Game/.vs/config/applicationhost.config
 /Game/Game.ActorModel/bin/Debug
 /Game/Game.ActorModel/obj/Debug
+/Game/Game.State/bin
+/Game/Game.State/obj/Debug
 /Game/Game.Web/bin
 /Game/Game.Web/obj/Debug
 /Game/packages
