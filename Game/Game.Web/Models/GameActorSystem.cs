@@ -1,6 +1,7 @@
 ﻿using Akka.Actor;
 using Game.ActorModel.Actors;
 using Game.ActorModel.ExternalSystems;
+using System;
 using System.Threading.Tasks;
 
 namespace Game.Web.Models
@@ -14,7 +15,12 @@ namespace Game.Web.Models
         {
             GameEventsPusher = new SignalRGameEventsPusher();
             ActorSystem = ActorSystem.Create("GameSystem");
-            ActorReferences.GameController = ActorSystem.ActorOf<GameControllerActor>();
+
+            ActorReferences.GameController =
+                ActorSystem.ActorSelection("akka.tcp://GameSystem@127.0.0.1:8091/user/GameController")
+                .ResolveOne(TimeSpan.FromSeconds(3))
+                .Result;
+
             ActorReferences.SignalRBridge = ActorSystem.ActorOf(Props.Create(() => new SignalRBridgeActor(GameEventsPusher, ActorReferences.GameController)), "SignalRBridge");
         }
 

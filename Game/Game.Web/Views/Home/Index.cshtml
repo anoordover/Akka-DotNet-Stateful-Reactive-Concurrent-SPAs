@@ -55,7 +55,7 @@
                 vm.isJoined(true);
             } else {
                 var playerExistsInList = ko.utils.arrayFirst(vm.otherPlayers(), function (player) {
-                    return playerName === player.playerName;
+                    return playerName === player.playerName();
                 });
 
                 if (!playerExistsInList) {
@@ -77,6 +77,12 @@
                 });
             }
         }
+
+        $.connection.hub.disconnected(function () {
+            setTimeout(function () {
+                $.connection.hub.start();
+            }, 5000);
+        });
 
         $.connection.hub.start();
 
@@ -113,7 +119,7 @@
             self.thisPlayer = ko.observable(new PlayerViewModel('', NaN));
 
             // other players in the game
-            self.otherPlayers = ko.observableArray();
+            self.otherPlayers = ko.observableArray().extend({ rateLimit: { timeout: 500, method: "notifyWhenChangesStop" } });
 
             self.joinGame = function () {
                 gameHub.server.joinGame(self.newPlayerName());
