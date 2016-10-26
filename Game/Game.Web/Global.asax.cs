@@ -1,4 +1,5 @@
 ﻿using Game.ActorModel.Actors;
+using Game.Web.Models;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
