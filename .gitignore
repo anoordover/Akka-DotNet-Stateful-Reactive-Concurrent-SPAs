@@ -4,10 +4,10 @@
 
 /Game/.vs/Game/v14
 /Game/.vs/config/applicationhost.config
-/Game/Game.ActorModel/bin/Debug
-/Game/Game.ActorModel/obj/Debug
+/Game/Game.ActorModel/bin/
+/Game/Game.ActorModel/obj/
 /Game/Game.State/bin
-/Game/Game.State/obj/Debug
+/Game/Game.State/obj/
 /Game/Game.Web/bin
-/Game/Game.Web/obj/Debug
+/Game/Game.Web/obj/
 /Game/packages
